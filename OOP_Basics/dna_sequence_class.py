@@ -39,3 +39,9 @@ Requirements:
 Goal:
 Learn to work with strings, biological logic, and OOP methods.
 """
+
+class DNA():
+    
+    def __init__(self, seq):
+        self.seq = "ATTGAGCCTTA"
+   
