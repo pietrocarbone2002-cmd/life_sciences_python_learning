@@ -41,7 +41,25 @@ Learn to work with strings, biological logic, and OOP methods.
 """
 
 class DNA():
-    
+     
     def __init__(self, seq):
-        self.seq = "ATTGAGCCTTA"
+        self.seq = str(seq)
+
+    def length(self):
+        return len(self.seq)
+        
+
+    def gc_content(self):
+        g = self.seq.count("G")
+        c = self.seq.count("C")
+        return ((g+c/len(self.seq)) * 100)
+   
+    def complement(self):
+        self.seq = self.seq.replace("A","T")
+        
+
+        
+        
+    
+
    
