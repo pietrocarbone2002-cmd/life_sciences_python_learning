@@ -78,15 +78,22 @@ class DNA():
         rna_seq = self.seq.replace("T", "U")
         return rna_seq
 
-inp = input("Enter DNA Sequence: ")
-seq = inp.upper()
+valid = {"A", "T", "G", "C"}
 
-if ("A" and "T" and "G" and "C") not in seq:
-    print("Please enter a valid sequence")
-else:
-    print(seq)
-    
-    
+inp = input("Enter DNA Sequence: ")
+seque = inp.upper()
+le = len(seque)
+
+for x in range(0, le):
+    if seque[x] not in valid:
+        print("Please enter a valid sequence!")
+        break
+    else:
+        continue
+
+
+
+
         
       
         
