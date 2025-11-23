@@ -79,15 +79,12 @@ cell3 = Cell(5, "bacterial")
 # Add some organelles
 cell1.add_organelle("Mitochondria")
 cell1.add_organelle("Nucleus")
-
 cell2.add_organelle("Chloroplast")
-
 cell3.add_organelle("Ribosome")
 
 # Age the cells a little
 cell1.age_one_day()
 cell1.age_one_day()
-
 cell3.age_one_day()
 
 # Show info for each cell

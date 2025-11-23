@@ -48,17 +48,37 @@ class DNA():
     def length(self):
         return len(self.seq)
         
-
     def gc_content(self):
         g = self.seq.count("G")
         c = self.seq.count("C")
         return ((g+c/len(self.seq)) * 100)
    
     def complement(self):
-        self.seq = self.seq.replace("A","T")
-        
+        self.seq = self.seq.replace("A","X")
+        self.seq = self.seq.replace("T", "A")
+        self.seq = self.seq.replace("X", "T")
+ 
+        self.seq = self.seq.replace("C", "Y")
+        self.seq = self.seq.replace("G", "C")
+        self.seq = self.seq.replace("Y", "G")
+        return self.seq
+    
+    def reverse_complement(self):
+        rev_seq = self.seq[::-1]
+        comp_rev = rev_seq.replace("A", "X")
+        comp_rev = comp_rev.replace("T", "A")
+        comp_rev = comp_rev.replace("X", "T")
 
+        comp_rev = comp_rev.replace("C", "Y")
+        comp_rev = comp_rev.replace("G", "C")
+        comp_rev = comp_rev.replace("Y", "G")
+        return comp_rev
+    
+    def transcribe(self):
+        rna_seq = self.seq.replace("T", "U")
+        return rna_seq
         
+      
         
     
 
