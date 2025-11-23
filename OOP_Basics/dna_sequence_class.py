@@ -77,6 +77,16 @@ class DNA():
     def transcribe(self):
         rna_seq = self.seq.replace("T", "U")
         return rna_seq
+
+inp = input("Enter DNA Sequence: ")
+seq = inp.upper()
+
+if ("A" and "T" and "G" and "C") not in seq:
+    print("Please enter a valid sequence")
+else:
+    print(seq)
+    
+    
         
       
         
