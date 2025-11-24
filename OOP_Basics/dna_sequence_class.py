@@ -51,17 +51,17 @@ class DNA():
     def gc_content(self):
         g = self.seq.count("G")
         c = self.seq.count("C")
-        return ((g+c/len(self.seq)) * 100)
+        return (((g+c)/len(self.seq)) * 100)
    
     def complement(self):
-        self.seq = self.seq.replace("A","X")
-        self.seq = self.seq.replace("T", "A")
-        self.seq = self.seq.replace("X", "T")
+        comp_seq = self.seq.replace("A","X")
+        comp_seq = comp_seq.replace("T", "A")
+        comp_seq = comp_seq.replace("X", "T")
  
-        self.seq = self.seq.replace("C", "Y")
-        self.seq = self.seq.replace("G", "C")
-        self.seq = self.seq.replace("Y", "G")
-        return self.seq
+        comp_seq = comp_seq.replace("C", "Y")
+        comp_seq = comp_seq.replace("G", "C")
+        comp_seq = comp_seq.replace("Y", "G")
+        return comp_seq
     
     def reverse_complement(self):
         rev_seq = self.seq[::-1]
@@ -81,18 +81,28 @@ class DNA():
 valid = {"A", "T", "G", "C"}
 
 inp = input("Enter DNA Sequence: ")
-seque = inp.upper()
-le = len(seque)
+sequence = inp.upper()
+le = len(sequence)
+
+valid_seq = True
 
 for x in range(0, le):
-    if seque[x] not in valid:
-        print("Please enter a valid sequence!")
+    if sequence[x] not in valid:
+        valid_seq = False
         break
-    else:
-        continue
 
-
-
+if valid_seq:
+    seq1 = DNA(sequence)
+    print(f'''
+          Entered Sequence: {sequence}
+          Length: {seq1.length()}
+          C and G %Content: {seq1.gc_content()}%
+          Complement Sequence: {seq1.complement()}
+          Reverse Complement: {seq1.reverse_complement()}
+          mRNA Equivalent: {seq1.transcribe()}
+          ''')
+else:
+    print("Please enter a valid sequence!")
 
         
       
