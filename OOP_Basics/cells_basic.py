@@ -36,6 +36,8 @@ Goal:
 Understand how to model real biological objects using classes and 
 object-oriented programming fundamentals in Python.
 """
+#------- Solution -------#
+
 #Create the OOP logic
 class Cell():
     
