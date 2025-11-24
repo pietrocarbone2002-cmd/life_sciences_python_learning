@@ -119,11 +119,4 @@ if valid_seq:
 
 #This message is printed if the sequence is invalid
 else:
-    print("Please enter a valid sequence!")
-
-        
-      
-        
-    
-
-   
+    print("Please enter a valid sequence!")   
