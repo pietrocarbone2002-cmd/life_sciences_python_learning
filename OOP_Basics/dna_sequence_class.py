@@ -86,10 +86,13 @@ le = len(sequence)
 
 valid_seq = True
 
-for x in range(0, le):
-    if sequence[x] not in valid:
-        valid_seq = False
-        break
+if le == 0:
+    valid_seq = False
+else:
+    for x in range(0, le):
+        if sequence[x] not in valid or le == 0:
+            valid_seq = False
+            break
 
 if valid_seq:
     seq1 = DNA(sequence)
