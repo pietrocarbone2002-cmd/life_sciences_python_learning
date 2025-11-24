@@ -116,6 +116,8 @@ if valid_seq:
           Reverse Complement: {seq1.reverse_complement()}
           mRNA Equivalent: {seq1.transcribe()}
           ''')
+
+#This message is printed if the sequence is invalid
 else:
     print("Please enter a valid sequence!")
 
