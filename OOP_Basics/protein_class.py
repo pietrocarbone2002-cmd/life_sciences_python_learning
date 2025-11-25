@@ -47,3 +47,27 @@ Goal:
 Learn to work with dictionaries, biochemical rules, sequence logic,
 and object-oriented design
 '''
+
+amino_acids_FASTA_code = {
+    "A":{"name":"Alanine"        , "mass": 89.09   },
+    "R":{"name":"Arginine"       , "mass": 174.20  },
+    "N":{"name":"Asparagine"     , "mass": 132.12  },
+    "D":{"name":"Aspartic Acid"  , "mass": 133.10  },
+    "C":{"name":"Cysteine"       , "mass": 121.15  },
+    "E":{"name":"Glutamic Acid"  , "mass": 147.13  },
+    "Q":{"name":"Glutamine"      , "mass": 146.15  },
+    "G":{"name":"Glycine"        , "mass": 75.07   },
+    "H":{"name":"Histidine"      , "mass": 155.16  },
+    "I":{"name":"Isoleucine"     , "mass": 131.17  },
+    "L":{"name":"Leucine"        , "mass": 131.17  },
+    "K":{"name":"Lysine"         , "mass": 146.19  },
+    "M":{"name":"Methiodine"     , "mass": 149.21  },
+    "F":{"name":"Phenylalanine"  , "mass": 165.19  },
+    "P":{"name":"Proline"        , "mass": 115.13  },
+    "S":{"name":"Serine"         , "mass": 105.09  },
+    "T":{"name":"Threonine"      , "mass": 119.12  },
+    "W":{"name":"Tryptophan"     , "mass": 204.23  },
+    "Y":{"name":"Tyrosine"       , "mass": 181.19  },
+    "V":{"name":"Valine"         , "mass": 117.15  },
+}
+
