@@ -78,4 +78,11 @@ class Protein():
         return len(self.seq)
     
     def molecular_weigth(self):
+        total = 0
+        for aa in self.seq:
+            mass = self.amino_acids_FASTA_code[aa]["mass"]
+            total = total + mass
+        return total
+    
+    def aa_composition(self):
         return
