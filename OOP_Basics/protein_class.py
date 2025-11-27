@@ -73,6 +73,9 @@ class Protein():
 
     def __init__(self, seq):
         self.seq = seq
+        valid = set(self.amino_acids_FASTA_code)
+        if not set(self.seq).issubset(valid):
+            raise ValueError("Sequence invali!")
 
     def length(self):
         return len(self.seq)
@@ -91,5 +94,19 @@ class Protein():
             composition[aa] = count
         return composition
     
-    def hydrophobic_fraction():
-        return 
+    def hydrophobic_fraction(self):
+        hydro = {"A", "V", "I", "L", "M", "F", "W", "Y"}
+        count = 0
+        for aa in self.seq:
+            if aa in hydro:
+                count = count + 1
+        fraction = count / len(self.seq)
+        return fraction
+    
+    def to_fasta(self, header):
+        return(f'''
+              >{header}
+              {self.seq}
+              ''')
+    
+aa_sequence = input("Enter your Protein Sequence")
