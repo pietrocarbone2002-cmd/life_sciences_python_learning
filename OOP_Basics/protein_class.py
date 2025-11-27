@@ -85,4 +85,11 @@ class Protein():
         return total
     
     def aa_composition(self):
-        return
+        composition = {}
+        for aa in self.amino_acids_FASTA_code:
+            count = self.seq.count(aa)
+            composition[aa] = count
+        return composition
+    
+    def hydrophobic_fraction():
+        return 
