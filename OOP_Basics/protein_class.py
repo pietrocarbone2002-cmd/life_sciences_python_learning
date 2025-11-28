@@ -47,7 +47,10 @@ Goal:
 Learn to work with dictionaries, biochemical rules, sequence logic,
 and object-oriented design
 '''
+
 class Protein():
+
+    #This dictionary contains all relevant information
     amino_acids_FASTA_code = {
       "A":{"name":"Alanine"        , "mass": 89.09   },
       "R":{"name":"Arginine"       , "mass": 174.20  },
@@ -71,22 +74,26 @@ class Protein():
       "V":{"name":"Valine"         , "mass": 117.15  },
     }
 
+    #The __init__ method itself checks fir input-validity
     def __init__(self, seq):
         self.seq = seq
         valid = set(self.amino_acids_FASTA_code)
-        if not set(self.seq).issubset(valid):
-            raise ValueError("Sequence invali!")
+        if not set(self.seq).issubset(valid):       #If the sequence contains characters outside the dictionary
+            raise ValueError("Sequence invali!")    #An error message gets printed
 
+    #This methos simply returns the length of the sequence
     def length(self):
         return len(self.seq)
     
+    #This method returns the total weigth in Dalton
     def molecular_weigth(self):
         total = 0
         for aa in self.seq:
-            mass = self.amino_acids_FASTA_code[aa]["mass"]
+            mass = self.amino_acids_FASTA_code[aa]["mass"] #The mass is extracted from the dictionary
             total = total + mass
         return total
     
+    #This method returns how many times an amino-acid is present in the sequence
     def aa_composition(self):
         composition = {}
         for aa in self.amino_acids_FASTA_code:
@@ -94,8 +101,9 @@ class Protein():
             composition[aa] = count
         return composition
     
+    #This method calculates the %-content of hydrophobis amino-acids
     def hydrophobic_fraction(self):
-        hydro = {"A", "V", "I", "L", "M", "F", "W", "Y"}
+        hydro = {"A", "V", "I", "L", "M", "F", "W", "Y"} #Check-tuple
         count = 0
         for aa in self.seq:
             if aa in hydro:
@@ -103,10 +111,10 @@ class Protein():
         fraction = count / len(self.seq)
         return fraction
     
+    #This method returns the sequence in the FASTA format
     def to_fasta(self, header):
         return(f'''
               >{header}
               {self.seq}
               ''')
     
-aa_sequence = input("Enter your Protein Sequence")
