@@ -119,7 +119,6 @@ class Protein():
               ''')
 
 #Object examples
-
 seq1 = Protein("AAAVCGK")
 print(seq1.aa_composition())
 print(seq1.hydrophobic_fraction())
