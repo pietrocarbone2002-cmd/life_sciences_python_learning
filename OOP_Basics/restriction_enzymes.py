@@ -45,3 +45,19 @@ Goal:
 Learn how to combine OOP design, string-search logic, validation rules,
 and sequence manipulation in a biologically realistic context.
 '''
+
+class RestictionEnzyme():
+    
+    def __init__(self, name, recognition_site, cut_position):
+        self.name = name
+        self.recognition_site = recognition_site
+        self.cut_position = int(cut_position)
+      
+    def find_sites(self, dna_sequence):
+        start_positions = []
+        i = 0
+        for site in dna_sequence in range(i, i+len(self.recognition_site)):
+            i = i+1
+            if site in dna_sequence:
+                start_positions.append(site)
+        return start_positions 
