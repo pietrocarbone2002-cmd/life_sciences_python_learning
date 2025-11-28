@@ -55,9 +55,7 @@ class RestictionEnzyme():
       
     def find_sites(self, dna_sequence):
         start_positions = []
-        i = 0
-        for site in dna_sequence in range(i, i+len(self.recognition_site)):
-            i = i+1
-            if site in dna_sequence:
-                start_positions.append(site)
-        return start_positions 
+        for x in range(0, len(dna_sequence) - len(self.recognition_site) + 1): #Scans for x in the dna_sequence until the last logical possibility
+            if dna_sequence[x : x + len(self.recognition_site)] == self.recognition_site: #This compares the dna_sequence from x -> known length to the known site 
+                start_positions.append(x)
+        return start_positions
