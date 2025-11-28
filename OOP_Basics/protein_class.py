@@ -79,7 +79,7 @@ class Protein():
         self.seq = seq
         valid = set(self.amino_acids_FASTA_code)
         if not set(self.seq).issubset(valid):       #If the sequence contains characters outside the dictionary
-            raise ValueError("Sequence invali!")    #An error message gets printed
+            raise ValueError("Sequence invalid!")    #An error message gets printed
 
     #This methos simply returns the length of the sequence
     def length(self):
@@ -117,4 +117,11 @@ class Protein():
               >{header}
               {self.seq}
               ''')
-    
+
+#Object examples
+
+seq1 = Protein("AAAVCGK")
+print(seq1.aa_composition())
+print(seq1.hydrophobic_fraction())
+print(seq1.molecular_weigth())
+print(seq1.to_fasta(header="My seq"))
