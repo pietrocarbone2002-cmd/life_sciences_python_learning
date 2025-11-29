@@ -59,3 +59,9 @@ class RestictionEnzyme():
             if dna_sequence[x : x + len(self.recognition_site)] == self.recognition_site: #This compares the dna_sequence from x -> known length to the known site 
                 start_positions.append(x)
         return start_positions
+    
+    def cut(self, dna_sequence):
+        dna_fragments = []
+        for x in range(0, len(dna_sequence) - len(self.recognition_site) + 1):
+            if dna_sequence[x : x + len(self.recognition_site)] == self.recognition_site:
+                
