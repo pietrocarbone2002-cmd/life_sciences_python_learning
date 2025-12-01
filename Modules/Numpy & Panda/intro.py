@@ -1,5 +1,5 @@
 '''
-Task: Intro to NumPy and Pandas (Bioinformatics Edition)
+Task: Intro to NumPy and Pandas
 
 Goal:
 Learn the basics of NumPy and Pandas by working with DNA sequences represented in numerical form.
