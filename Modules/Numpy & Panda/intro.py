@@ -36,3 +36,24 @@ Objective:
 Understand how NumPy handles numerical arrays and how Pandas organizes biological data in table form.
 
 '''
+#Import the required modules
+import numpy as np
+import pandas as pd
+
+#Here we create our DNA-Sequence
+
+seq = "AGGCGGGCTAGAGAAATGCTA"
+seq_list = list(seq)
+
+encoding = {
+    "A":0 ,
+    "C":1 ,
+    "G":2 ,
+    "T":3
+}
+
+length = np.size(seq_list)
+encoded_array = np.array([encoding[base] for base in seq])
+print(length)
+print(encoded_array)
+
