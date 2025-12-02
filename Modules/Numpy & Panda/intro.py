@@ -55,15 +55,32 @@ encoding = {
 length = np.size(seq_list)
 encoded_array = np.array([encoding[base] for base in seq])
 
-#Reine Python Logik for "Count of each nucleotide"
+#Python Logic for "Count of each nucleotide"
 counts = {base: 0 for base in encoding.keys()}
 for base in seq:
     counts[base] += 1
 
-print(counts)
+# print(counts)
 
 #Numpy-Version
 unique, counts = np.unique(encoded_array, return_counts=True)
 nucleotides_count = {base: int(count) for base, count in zip(encoding.keys(), counts)}
 
-print(nucleotides_count)
+# print(nucleotides_count)
+
+#GC-Content Python
+gc = seq.count("G") + seq.count("C")
+gc_percentage = ((gc)/len(seq)) * 100
+
+# print(f'{gc_percentage}%')
+
+#GC-Content Numpy
+gc_mask = np.isin(encoded_array, [1,2])
+gc_percentage_numpy = gc_mask.mean() * 100
+
+# print(f'{gc_percentage_numpy}%')
+
+
+
+
+
