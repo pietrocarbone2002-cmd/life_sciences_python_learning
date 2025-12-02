@@ -54,6 +54,16 @@ encoding = {
 
 length = np.size(seq_list)
 encoded_array = np.array([encoding[base] for base in seq])
-print(length)
-print(encoded_array)
 
+#Reine Python Logik for "Count of each nucleotide"
+counts = {base: 0 for base in encoding.keys()}
+for base in seq:
+    counts[base] += 1
+
+print(counts)
+
+#Numpy-Version
+unique, counts = np.unique(encoded_array, return_counts=True)
+nucleotides_count = {base: int(count) for base, count in zip(encoding.keys(), counts)}
+
+print(nucleotides_count)
