@@ -67,17 +67,20 @@ print("")
 #Calculate the growth-rate
 
 log_cell_count = np.log(cell_count)          #this scales the list to a log-scale
-k, a = np.polyfit(time_h, log_cell_count, 1)
-#This function means np.polyfit(x-values, y-values, degree). Degree = 1 is a linear regression
+k, a = np.polyfit(time_h, log_cell_count, 1) #This function means np.polyfit(x-values, y-values, degree). Degree = 1 is a linear regression
+
 
 growth_rate = k
-print(growth_rate)
+print(f'Growth Rate: {growth_rate}')
 print("")
 n0 = np.exp(a)
 
 doubling_time = np.log(2) / growth_rate
+prediction = 
+
+print(f'Doubling Time: {doubling_time}')
+print("")
+print(prediction)
 
 
-print(doubling_time)
 
-#Add the data to the dataframe
