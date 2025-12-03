@@ -50,3 +50,34 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+time_h = [0, 12, 24, 36, 48, 60, 72]
+cell_count = [1.2e5, 1.8e5, 2.8e5, 4.0e5, 5.9e5, 8.9e5, 1.3e6]
+
+#Panda Dataframe
+dt = pd.DataFrame({
+    "Time" : time_h,
+    "Cell Count" : cell_count
+})
+
+print(dt)
+print("")
+
+#Numpy calculations
+
+#Calculate the growth-rate
+
+log_cell_count = np.log(cell_count)          #this scales the list to a log-scale
+k, a = np.polyfit(time_h, log_cell_count, 1)
+#This function means np.polyfit(x-values, y-values, degree). Degree = 1 is a linear regression
+
+growth_rate = k
+print(growth_rate)
+print("")
+n0 = np.exp(a)
+
+doubling_time = np.log(2) / growth_rate
+
+
+print(doubling_time)
+
+#Add the data to the dataframe
