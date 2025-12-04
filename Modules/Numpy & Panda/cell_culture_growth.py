@@ -59,11 +59,6 @@ dt = pd.DataFrame({
     "Cell Count" : cell_count
 })
 
-print(dt)
-print("")
-
-#Numpy calculations
-
 #Calculate the growth-rate
 
 log_cell_count = np.log(cell_count)          #this scales the list to a log-scale
@@ -73,6 +68,8 @@ growth_rate = k
 print(f'Growth Rate: {growth_rate}')
 print("")
 
+#Calculate doubling time
+
 doubling_time = np.log(2) / growth_rate
 
 print(f'Doubling Time: {doubling_time}')
@@ -80,10 +77,24 @@ print("")
 
 #Add the new data to the Pandas Dataset
 dt["Log-Count"] = log_cell_count
-dt["Doubling Time"] = doubling_time
-dt["Growth Rate"] = growth_rate
+
+#Calculate prediction
+n0 = cell_count[0]
+time_h_numpy = np.array(time_h)
+prediction = n0 * np.exp(k * time_h_numpy)
+
+offset = 100 - (np.array(prediction) / np.array(cell_count)) * 100 
+
+dt["Prediction"] = prediction
+dt["Offset [%]"] = offset
 
 print(dt)
+
+#Matplot - plotting
+
+
+
+
 
 
 
