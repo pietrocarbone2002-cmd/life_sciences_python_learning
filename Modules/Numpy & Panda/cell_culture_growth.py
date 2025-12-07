@@ -92,14 +92,8 @@ print(dt)
 
 #Matplot - plotting
 
-plt.scatter(time_h, cell_count, label="Measured")
-plt.plot(time_h, prediction, label="Predicted", color="red")
+plt.scatter(time_h, cell_count, label="Measured")                #Plots the cell count
+plt.hist(offset, color="yellow", label="Offset")                 #Plots the offset
+plt.plot(time_h, prediction, label="Predicted", color="red")     #Plots the predicted value
 plt.legend()
 plt.show()
-
-
-
-
-
-
-
