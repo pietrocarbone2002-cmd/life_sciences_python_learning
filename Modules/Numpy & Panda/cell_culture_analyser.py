@@ -62,23 +62,27 @@ class CellCultureAnalyser():
         self.time = nu.array(time)
         self.cell_count = nu.array(cell_count)
 
-
     def growth_rate(self):
         k, a = nu.polyfit(self.time, self.cell_count, 1) 
-        growth_rate = k
-        return growth_rate
+        return k
     
     def doubling_time(self):
-        k, a = nu.polyfit(self.time, self.cell_count, 1) 
-        growth_rate = k
-        doubling_time = nu.log(self.cell_count) / growth_rate
+        k = self.growth_rate() 
+        doubling_time = nu.log(self.cell_count) / k
         return doubling_time
     
     def predict(self, n_hours):
-        k, a = nu.polyfit(self.time, self.cell_count, 1) 
-        growth_rate = k
-        prediction = self.cell_count[0] * nu.exp(growth_rate * n_hours)
+        k = self.growth_rate()
+        prediction = self.cell_count[0] * nu.exp(k * n_hours)
         return prediction
     
     def to_dataframe(self):
-        pass 
+        dt = pd.DataFrame({
+            "Time" : self.time,
+            "Cell Count" : self.cell_count,
+            "Log Count" : nu.log(self.cell_count),
+            "Prediction" : self.predict(),
+            "Error [%]" : 100 - (nu.array(self.rediction) / nu.array(self.cell_count)) * 100 
+        })
+        return dt
+    
