@@ -61,7 +61,7 @@ class CellCultureAnalyser():
     def __init__ (self, time, cell_count):
         self.time = nu.array(time)
         self.cell_count = nu.array(cell_count)
-
+        #Implement validator here
     def growth_rate(self):
         k, a = nu.polyfit(self.time, self.cell_count, 1) 
         return k
