@@ -61,7 +61,20 @@ class CellCultureAnalyser():
     def __init__ (self, time, cell_count):
         self.time = nu.array(time)
         self.cell_count = nu.array(cell_count)
-        #Implement validator here
+
+        #Validator
+
+        valid_seq = True
+        length = self.len()
+        valid_list = {"A", "T", "C", "G"}
+        if length == 0:
+            valid_seq = False 
+        else:
+            for a in range(0, length):
+                if self[a] not in valid_list:
+                    valid_seq = False
+                break
+
     def growth_rate(self):
         k, a = nu.polyfit(self.time, self.cell_count, 1) 
         return k
