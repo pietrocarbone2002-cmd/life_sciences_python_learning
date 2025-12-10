@@ -99,3 +99,20 @@ class CellCultureAnalyser():
         })
         return dt
     
+    def plot(self, future_h):
+
+        plt.scatter(self.time, self.cell_count, color="blue", label="Cell Count")
+
+        N0 = self.cell_count[0]
+        k = self.growth_rate()
+        t_future = nu.linspace(self.time.max(), self.time.max() + future_h, 200)
+        future_curve = N0 * nu.exp(k * t_future)
+
+        t_fit = nu.linspace(self.time.min(), self.time.max(), 200)
+        fit_curve = N0 * nu.exp(k * t_fit)
+
+        plt.plot(t_fit, fit_curve, color="green", label="Fit Curve")
+        plt.plot(t_future, future_curve, "--", label="Future Prediction")
+        
+        plt.legend()
+        plt.show()
