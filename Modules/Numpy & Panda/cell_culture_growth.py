@@ -92,8 +92,28 @@ print(dt)
 
 #Matplot - plotting
 
-plt.scatter(time_h, cell_count, label="Measured")                #Plots the cell count
-plt.hist(offset, color="yellow", label="Offset")                 #Plots the offset
-plt.plot(time_h, prediction, label="Predicted", color="red")     #Plots the predicted value
-plt.legend()
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+
+#OBERER PLOT
+ax1.scatter(time_h, cell_count, label="Measured", color="blue")
+ax1.plot(time_h, prediction, label="Predicted", color="red")
+
+ax1.set_title("Cell Growth: Measured vs Predicted")
+ax1.set_xlabel("Time (h)")
+ax1.set_ylabel("Cell Count")
+ax1.legend()
+ax1.grid(True)
+
+
+#UNTERER PLOT
+
+ax2.hist(offset, bins=10, color="yellow", edgecolor="black", label="Offset (%)")
+ax2.set_title("Prediction Offset Distribution")
+ax2.set_xlabel("Offset (%)")
+ax2.set_ylabel("Frequency")
+ax2.legend()
+ax2.grid(True)
+
+# Layout sauber formatieren
+plt.tight_layout()
 plt.show()
