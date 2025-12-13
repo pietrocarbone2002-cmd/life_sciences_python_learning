@@ -62,18 +62,26 @@ class CellCultureAnalyser():
         self.time = nu.array(time)
         self.cell_count = nu.array(cell_count)
 
-        #Validator
+        #Validator Array Length
 
-        valid_seq = True
-        length = self.len()
-        valid_list = {"A", "T", "C", "G"}
-        if length == 0:
-            valid_seq = False 
-        else:
-            for a in range(0, length):
-                if self[a] not in valid_list:
-                    valid_seq = False
-                break
+        if nu.size(self.time) != nu.size(self.cell_count):
+            raise ValueError(''' Invalid Data Entered:
+                             Time and Cell Count must be of equal length!
+                             ''')
+        
+        #Validator Cell Count
+        for a in self.cell_count:
+            if a <= 0:
+                raise ValueError('''Invalid Data Entered:
+                                 Cell Count cannot be 0!
+                                 ''')
+        
+        #Validator Array minimal size
+
+        if nu.size(self.time) <= 3 or nu.size(self.cell_count) <= 3:
+            raise ValueError('''Invalid Data Entered!
+                             Data Set size must be larger than 3 data points!
+                             ''')
 
     def growth_rate(self):
         k, a = nu.polyfit(self.time, self.cell_count, 1) 
