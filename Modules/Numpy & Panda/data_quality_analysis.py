@@ -112,4 +112,23 @@ dataframe = pd.DataFrame({
     "Measurements" : measurement
 })
 
-print(dataframe)
+# print(dataframe)
+# print("")
+
+#Data Inspection
+
+print(f'''First Row Dataframe:
+      {dataframe.head(n=1)}''')
+
+print(f'''Last Row Dataframe:
+      {dataframe.tail(n=1)}''')
+
+print(f'''Basic Summary Statistics:
+      {dataframe.describe(
+         include = dataframe["Measurements"].count()
+      )}
+      ''')
+
+print(f'''Missing Values:
+      Time:          {dataframe["Time"].isna().sum()} missing values.
+      Measurements:  {dataframe["Measurements"].isna().sum()} missing values.''')
