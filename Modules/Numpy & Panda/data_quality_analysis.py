@@ -130,5 +130,18 @@ print(f'''Basic Summary Statistics:
       ''')
 
 print(f'''Missing Values:
-      Time:          {dataframe["Time"].isna().sum()} missing values.
-      Measurements:  {dataframe["Measurements"].isna().sum()} missing values.''')
+      Time:          {dataframe["Time"].isna().sum()} missing values out of {dataframe["Time"].count() + dataframe["Time"].isna().sum()}.
+      Measurements:  {dataframe["Measurements"].isna().sum()} missing values out of {dataframe["Measurements"].count() + dataframe["Measurements"].isna().sum()}.''')
+
+#Data Cleaning
+
+#Idea 1 (good for research): implement a numpy regression and fill the None values with a plausible integer
+#Idea 2 (good for GMP): remove data pairs where a value is attributed to None
+
+if None in dataframe["Time"]:
+    #Fill for Idea 1 or cut for Idea 2
+
+if None in dataframe["Measurements"]:
+    #Fill for Idea 1 or cut for Idea 2
+
+
