@@ -88,6 +88,8 @@ Learn how NumPy and Pandas are used together in real-world scientific data analy
 including inspection, cleaning, transformation, and basic statistical reasoning.
 
 This exercise focuses on thinking in arrays and tables rather than loops.
+
+Unit Testing (Konzept)
 '''
 
 import numpy as nu
@@ -138,10 +140,8 @@ print(f'''Missing Values:
 #Idea 1 (good for research): implement a numpy regression and fill the None values with a plausible integer
 #Idea 2 (good for GMP): remove data pairs where a value is attributed to None
 
-if None in dataframe["Time"]:
-    #Fill for Idea 1 or cut for Idea 2
+#Idea 1: Filling
 
-if None in dataframe["Measurements"]:
-    #Fill for Idea 1 or cut for Idea 2
-
+#Implement a mean that fills the missing time: t = (t-1 + t+1)/2
+#Implement a statistical measurement which allows to fill missing values for the measurements
 
