@@ -54,3 +54,19 @@ This module should make it easy to add new data formats in the future
 without modifying the core analysis logic.
 '''
 
+import pandas as pd
+import numpy as np
+data = pd.read_csv(r"Modules\Numpy_Pandas\Project_Cell_Counter\raw_data.csv")
+
+#print(data)
+
+nu_data = data.to_numpy()
+
+time = np.array(nu_data[:,0])
+cell_count = np.array(nu_data[:,1])
+
+print("Time:")
+print(time)
+print("Cell Count:")
+print(cell_count)
+
