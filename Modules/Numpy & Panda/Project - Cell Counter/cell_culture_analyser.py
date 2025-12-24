@@ -82,13 +82,14 @@ class CellCultureAnalyser():
             raise ValueError('''Invalid Data Entered!
                              Data Set size must be larger than 3 data points!
                              ''')
-
+    #Method to calculate the growth rate (k) of the cell culture
     def growth_rate(self):
-        k, a = nu.polyfit(self.time, self.cell_count, 1) 
+        k, a = nu.polyfit(self.time, self.cell_count, 1)
         return k
     
+    #Method to calculate the doubling time
     def doubling_time(self):
-        k = self.growth_rate() 
+        k = self.growth_rate() #The growth-rate method is called. K doesn't need to be calculated each time again 
         doubling_time = nu.log(self.cell_count) / k
         return doubling_time
     
@@ -97,6 +98,7 @@ class CellCultureAnalyser():
         prediction = self.cell_count[0] * nu.exp(k * n_hours)
         return prediction
     
+    #Create a dataframe using Pandas
     def to_dataframe(self):
         dt = pd.DataFrame({
             "Time" : self.time,
@@ -107,10 +109,13 @@ class CellCultureAnalyser():
         })
         return dt
     
+    #Plotting Method using Matplot
     def plot(self, future_h):
-
+        
+        #Scatterplot of the counting points
         plt.scatter(self.time, self.cell_count, color="blue", label="Cell Count")
 
+        #In between calculations for plotting
         N0 = self.cell_count[0]
         k = self.growth_rate()
         t_future = nu.linspace(self.time.max(), self.time.max() + future_h, 200)
