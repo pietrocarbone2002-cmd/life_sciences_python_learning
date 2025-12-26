@@ -139,7 +139,33 @@ print(f'''Missing Values:
 
 #Dropping missing pairs
 
-dataframe_clean = dataframe.dropna()
-print(dataframe_clean)
+dataframe = dataframe.dropna()
+#print(dataframe)
 
 #Outlier detection
+outlier = 2.5
+
+#Calculate the z-score
+mean = dataframe["Measurements"].mean()
+std = dataframe["Measurements"].std()
+
+z_score = (dataframe["Measurements"] - mean)/std
+
+#Create a new column with all z-scores
+
+dataframe["Z-Score"] = z_score
+print("")
+print(dataframe)
+print("")
+
+mask = dataframe["Z-Score"] > outlier
+
+print(f'''Outliers:
+      {dataframe["Z-Score"].gt(outlier).sum()} outliers detected!
+      Time: {dataframe[mask]["Time"].values}h
+      Outlier(s): {dataframe[mask]["Z-Score"].to_string(index=False)}
+      Measurement(s): {dataframe[mask]["Measurements"].to_list()}''')
+
+#.values returns the indices as values
+#.to_string returns the indices as a string
+#.to_list resturns the indices as a list
