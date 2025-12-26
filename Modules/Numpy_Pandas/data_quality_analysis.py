@@ -137,23 +137,9 @@ print(f'''Missing Values:
 
 #Data Cleaning
 
-#Idea 1 (good for research): implement a numpy regression and fill the None values with a plausible integer
-#Idea 2 (good for GMP): remove data pairs where a value is attributed to None
+#Dropping missing pairs
 
-#Idea 1: Filling
+dataframe_clean = dataframe.dropna()
+print(dataframe_clean)
 
-#Filling time
-
-for a in time:
-   missing_time = (time[a-1] + time[a+1])
-   if time[a] == None:
-      time[a] = missing_time
-
-for b in measurement:
-   k, j = nu.polyfit(time, measurement, 1)
-   missing_value = time[b] * j
-   if measurement[b] == None:
-      measurement = missing_value
-#Implement a mean that fills the missing time: t = (t-1 + t+1)/2
-#Implement a statistical measurement which allows to fill missing values for the measurements
-
+#Outlier detection
