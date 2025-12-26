@@ -80,7 +80,6 @@ Part 6 — Visualization (optional but recommended)
 
 12. Create at least one plot using Matplotlib:
     - Measurement vs. Time
-    - Highlight cleaned data vs. removed outliers
 
 --------------------------------------------------
 Goal:
@@ -88,8 +87,6 @@ Learn how NumPy and Pandas are used together in real-world scientific data analy
 including inspection, cleaning, transformation, and basic statistical reasoning.
 
 This exercise focuses on thinking in arrays and tables rather than loops.
-
-Unit Testing (Konzept)
 '''
 
 import numpy as nu
@@ -177,4 +174,7 @@ print(f'''Outliers:
 #.to_list resturns the indices as a list
 
 #Plotting
+plt.scatter(time, measurement, color = "blue", label = "Data Points")
 
+plt.legend()
+plt.show()

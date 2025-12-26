@@ -94,7 +94,7 @@ print(dt)
 
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
 
-#OBERER PLOT
+#Upper Plot
 ax1.scatter(time_h, cell_count, label="Measured", color="blue")
 ax1.plot(time_h, prediction, label="Predicted", color="red")
 
@@ -105,7 +105,7 @@ ax1.legend()
 ax1.grid(True)
 
 
-#UNTERER PLOT
+#Lower Plot
 
 ax2.hist(offset, bins=10, color="yellow", edgecolor="black", label="Offset (%)")
 ax2.set_title("Prediction Offset Distribution")
@@ -114,6 +114,6 @@ ax2.set_ylabel("Frequency")
 ax2.legend()
 ax2.grid(True)
 
-# Layout sauber formatieren
+# Layout formatting
 plt.tight_layout()
 plt.show()
