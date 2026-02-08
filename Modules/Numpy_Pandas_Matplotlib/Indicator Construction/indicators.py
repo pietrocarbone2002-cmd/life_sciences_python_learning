@@ -22,17 +22,29 @@ data["Slow MA"] = (
 
 fa_length = 4
 
+#Create an empty list
 fast_ma_values = []
 
+#Scan the values in the dataset
 for i in range(len(data["Value"])):
+
+    #Append the data only after a complete window can be used for calculations
     if i >= fa_length - 1:
-        moving_sum2 = sum(data["Value"][i - fa_length + 1:i + 1])
-        fast_ma_values.append(moving_sum2/fa_length)
+        #This makes the window roll
+        moving_sum = sum(data["Value"][i - fa_length + 1:i + 1])
+        fast_ma_values.append(moving_sum/fa_length)
+    
+    #Append "NaN" for the 
     else:
         fast_ma_values.append(nu.nan)
 
+#Convert the list into an array
 fast_ma = nu.array(fast_ma_values)
+
+#Create a new column in the dataframe
 data["Fast MA"] = fast_ma
+
+#Signaling - MA Crossover
 
 #Plotting
 ppl.plot(data["Time"], data["Value"], label = "Data")
