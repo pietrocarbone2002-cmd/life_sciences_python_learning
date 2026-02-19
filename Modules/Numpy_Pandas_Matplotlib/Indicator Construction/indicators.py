@@ -46,21 +46,32 @@ data["Fast MA"] = fast_ma
 
 #Signaling - MA Crossover
 
-crossovers = []
-for i in data["Fast MA"]:
-    if data["Fast MA"][i] == data["Slow MA"][i]:
-        crossovers.append(data["Fast MA"][i])
-    else:
-        crossovers.append(nu.nan)
-crossovers_array = nu.array(crossovers)
-data["Crossovers"] = crossovers_array
+# crossovers = []
+# for i in data["Fast MA"]:
+#     if data["Fast MA"][i] == data["Slow MA"][i]:
+#         crossovers.append(data["Fast MA"][i])
+#     elif data["Fast MA"] == nu.nan:
+#         crossovers.append(nu.nan)
+#     else:
+#         crossovers.append(nu.nan)
+
+# crossovers_array = nu.array(crossovers)
+# data["Crossovers"] = crossovers_array
+
+#Deviation Bands
+
+#Upperband = MA + k*STD. For first band k = 1
+
+data["Upperband"] = data["Slow MA"] + 0.5 * nu.std(data["Value"])
+
+
 
 
 #Plotting
 ppl.plot(data["Time"], data["Value"], label = "Data")
 ppl.plot(data["Time"], data["Slow MA"], color = "red")
 ppl.plot(data["Time"], data["Fast MA"], color = "orange")
-ppl.scatter(data["Time"], data["Crossovers"])
+ppl.plot(data["Time"], data["Upperband"], color = "purple")
 ppl.xlabel("Time")
 ppl.ylabel("Values")
 ppl.show()
