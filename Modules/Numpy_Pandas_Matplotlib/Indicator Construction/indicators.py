@@ -21,7 +21,7 @@ data["Slow MA"] = (
 slow_ma = nu.array(data["Slow MA"])
 #Fast MA - Python Logik
 
-fa_length = 4
+fa_length = 3
 
 #Create an empty list
 fast_ma_values = []
@@ -70,12 +70,24 @@ data["Lowerband"] = data["Fast MA"] - 1 * (data["Value"].rolling(window=sl_lengt
 data["Lowerband 2"] = data["Fast MA"] - 2 * (data["Value"].rolling(window=sl_length).std())
 data["Lowerband 3"] = data["Fast MA"] - 2.5 * (data["Value"].rolling(window=sl_length).std())
 
+# #Upperband = MA + k*STD
+
+# data["Upperband"] = data["Fast MA"] + 0.5 * (data["Value"].std())
+# data["Upperband 2"] = data["Fast MA"] + 1 * (data["Value"].std())
+# data["Upperband 3"] = data["Fast MA"] + 1.5 * (data["Value"].std())
+
+# #Lowerband = MA - k*STD
+
+# data["Lowerband"] = data["Fast MA"] - 0.5 * (data["Value"].std())
+# data["Lowerband 2"] = data["Fast MA"] - 1 * (data["Value"].std())
+# data["Lowerband 3"] = data["Fast MA"] - 1.5 * (data["Value"].std())
+
 
 #Plotting -------------------------------------------------------------------------------------------
 
 ppl.plot(data["Time"], data["Value"], label = "Data")
-ppl.plot(data["Time"], data["Slow MA"], color = "red")
-ppl.plot(data["Time"], data["Fast MA"], color = "orange")
+ppl.plot(data["Time"], data["Slow MA"], color = "red", linewidth = 0.7)
+ppl.plot(data["Time"], data["Fast MA"], color = "orange", linewidth = 0.7)
 
 #Crossoversignal
 
