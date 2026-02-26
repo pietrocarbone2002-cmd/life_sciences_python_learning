@@ -7,7 +7,7 @@ data = pd.read_csv(r"Modules\Numpy_Pandas_Matplotlib\Indicator Construction\data
 nu_data = data.to_numpy()
 dataframe = pd.DataFrame(data)
 
-#MAs
+#MAs -----------------------------------------------------------------------------------------
 #Slow MA - Pandas Logik
 
 sl_length = 10
@@ -45,7 +45,7 @@ fast_ma = nu.array(fast_ma_values)
 #Create a new column in the dataframe
 data["Fast MA"] = fast_ma
 
-#Signaling - MA Crossover
+#Signaling - MA Crossover -----------------------------------------------------------------------
 
 signal = data["Fast MA"] - data["Slow MA"]
 signal_prev = signal.shift(1) #shift() only works for Pandas! No Numpy Arrays
@@ -55,7 +55,8 @@ data["Cross Up"] = cross_up
 
 cross_down = (signal < 0)  &  (signal_prev >= 0)
 data["Cross Down"] = cross_down
-#Deviation Bands
+
+#Deviation Bands ----------------------------------------------------------------------------------
 
 #Upperband = MA + k*STD
 
@@ -70,55 +71,65 @@ data["Lowerband 2"] = data["Fast MA"] - 2 * (data["Value"].rolling(window=sl_len
 data["Lowerband 3"] = data["Fast MA"] - 2.5 * (data["Value"].rolling(window=sl_length).std())
 
 
-# #Plotting
-# ppl.plot(data["Time"], data["Value"], label = "Data")
-# ppl.plot(data["Time"], data["Slow MA"], color = "red")
-# ppl.plot(data["Time"], data["Fast MA"], color = "orange")
+#Plotting -------------------------------------------------------------------------------------------
 
-# #STD Bands
-# ppl.plot(data["Time"], data["Upperband"], color = "green", linewidth = 0.1)
-# ppl.plot(data["Time"], data["Lowerband"], color = "green", linewidth = 0.1)
-# ppl.fill_between(
-#     data["Time"],
-#     data["Lowerband"],
-#     data["Upperband"],
-#     alpha=0.05,
-#     color = "green"
-# )
+ppl.plot(data["Time"], data["Value"], label = "Data")
+ppl.plot(data["Time"], data["Slow MA"], color = "red")
+ppl.plot(data["Time"], data["Fast MA"], color = "orange")
 
-# ppl.plot(data["Time"], data["Upperband 2"], color = "orange", linewidth = 0.1)
-# ppl.plot(data["Time"], data["Lowerband 2"], color = "orange", linewidth = 0.1)
-# ppl.fill_between(
-#     data["Time"],
-#     data["Upperband"],
-#     data["Upperband 2"],
-#     alpha=0.05,
-#     color = "orange"
-# )
-# ppl.fill_between(
-#     data["Time"],
-#     data["Lowerband"],
-#     data["Lowerband 2"],
-#     alpha=0.05,
-#     color = "orange"
-# )
-# ppl.plot(data["Time"], data["Upperband 3"], color = "red", linewidth = 0.1)
-# ppl.plot(data["Time"], data["Lowerband 3"], color = "red", linewidth = 0.1)
-# ppl.fill_between(
-#     data["Time"],
-#     data["Upperband 2"],
-#     data["Upperband 3"],
-#     alpha=0.05,
-#     color = "red"
-# )
-# ppl.fill_between(
-#     data["Time"],
-#     data["Lowerband 2"],
-#     data["Lowerband 3"],
-#     alpha=0.05,
-#     color = "red"
-# )
+#Crossoversignal
 
-# ppl.xlabel("Time")
-# ppl.ylabel("Values")
-# ppl.show()
+for s in data.loc[data["Cross Up"], "Time"]:
+    ppl.axvline(x=s, linewidth=0.5, color = "green", linestyle = "dashed")
+
+for s in data.loc[data["Cross Down"], "Time"]:
+    ppl.axvline(x=s, linewidth=0.5, color = "red", linestyle = "dashed")
+
+#STD Bands
+ppl.plot(data["Time"], data["Upperband"], color = "green", linewidth = 0.1)
+ppl.plot(data["Time"], data["Lowerband"], color = "green", linewidth = 0.1)
+ppl.fill_between(
+    data["Time"],
+    data["Lowerband"],
+    data["Upperband"],
+    alpha=0.05,
+    color = "green"
+)
+
+ppl.plot(data["Time"], data["Upperband 2"], color = "orange", linewidth = 0.1)
+ppl.plot(data["Time"], data["Lowerband 2"], color = "orange", linewidth = 0.1)
+ppl.fill_between(
+    data["Time"],
+    data["Upperband"],
+    data["Upperband 2"],
+    alpha=0.05,
+    color = "orange"
+)
+ppl.fill_between(
+    data["Time"],
+    data["Lowerband"],
+    data["Lowerband 2"],
+    alpha=0.05,
+    color = "orange"
+)
+ppl.plot(data["Time"], data["Upperband 3"], color = "red", linewidth = 0.1)
+ppl.plot(data["Time"], data["Lowerband 3"], color = "red", linewidth = 0.1)
+ppl.fill_between(
+    data["Time"],
+    data["Upperband 2"],
+    data["Upperband 3"],
+    alpha=0.05,
+    color = "red"
+)
+ppl.fill_between(
+    data["Time"],
+    data["Lowerband 2"],
+    data["Lowerband 3"],
+    alpha=0.05,
+    color = "red"
+)
+
+ppl.xlabel("Time")
+ppl.ylabel("Values")
+ppl.legend()
+ppl.show()
