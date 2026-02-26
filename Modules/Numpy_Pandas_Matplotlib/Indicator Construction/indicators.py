@@ -60,18 +60,68 @@ data["Fast MA"] = fast_ma
 
 #Deviation Bands
 
-#Upperband = MA + k*STD. For first band k = 1
+#Upperband = MA + k*STD
 
-data["Upperband"] = data["Slow MA"] + 0.5 * nu.std(data["Value"])
+data["Upperband"] = data["Fast MA"] + 1 * (data["Value"].rolling(window=sl_length).std())
+data["Upperband 2"] = data["Fast MA"] + 2 * (data["Value"].rolling(window=sl_length).std())
+data["Upperband 3"] = data["Fast MA"] + 2.5 * (data["Value"].rolling(window=sl_length).std())
 
+#Lowerband = MA - k*STD
 
+data["Lowerband"] = data["Fast MA"] - 1 * (data["Value"].rolling(window=sl_length).std())
+data["Lowerband 2"] = data["Fast MA"] - 2 * (data["Value"].rolling(window=sl_length).std())
+data["Lowerband 3"] = data["Fast MA"] - 2.5 * (data["Value"].rolling(window=sl_length).std())
 
 
 #Plotting
 ppl.plot(data["Time"], data["Value"], label = "Data")
 ppl.plot(data["Time"], data["Slow MA"], color = "red")
 ppl.plot(data["Time"], data["Fast MA"], color = "orange")
-ppl.plot(data["Time"], data["Upperband"], color = "purple")
+
+#STD Bands
+ppl.plot(data["Time"], data["Upperband"], color = "green", linewidth = 0.1)
+ppl.plot(data["Time"], data["Lowerband"], color = "green", linewidth = 0.1)
+ppl.fill_between(
+    data["Time"],
+    data["Lowerband"],
+    data["Upperband"],
+    alpha=0.05,
+    color = "green"
+)
+
+ppl.plot(data["Time"], data["Upperband 2"], color = "orange", linewidth = 0.1)
+ppl.plot(data["Time"], data["Lowerband 2"], color = "orange", linewidth = 0.1)
+ppl.fill_between(
+    data["Time"],
+    data["Upperband"],
+    data["Upperband 2"],
+    alpha=0.05,
+    color = "orange"
+)
+ppl.fill_between(
+    data["Time"],
+    data["Lowerband"],
+    data["Lowerband 2"],
+    alpha=0.05,
+    color = "orange"
+)
+ppl.plot(data["Time"], data["Upperband 3"], color = "red", linewidth = 0.1)
+ppl.plot(data["Time"], data["Lowerband 3"], color = "red", linewidth = 0.1)
+ppl.fill_between(
+    data["Time"],
+    data["Upperband 2"],
+    data["Upperband 3"],
+    alpha=0.05,
+    color = "red"
+)
+ppl.fill_between(
+    data["Time"],
+    data["Lowerband 2"],
+    data["Lowerband 3"],
+    alpha=0.05,
+    color = "red"
+)
+
 ppl.xlabel("Time")
 ppl.ylabel("Values")
 ppl.show()
