@@ -85,9 +85,11 @@ data["Lowerband 3"] = data["Fast MA"] - 2.5 * (data["Value"].rolling(window=sl_l
 
 #Plotting -------------------------------------------------------------------------------------------
 
-ppl.plot(data["Time"], data["Value"], label = "Data")
-ppl.plot(data["Time"], data["Slow MA"], color = "red", linewidth = 0.7)
-ppl.plot(data["Time"], data["Fast MA"], color = "orange", linewidth = 0.7)
+x = data["Time"]
+
+ppl.plot(x, data["Value"], label = "Data")
+ppl.plot(x, data["Slow MA"], color = "red", linewidth = 0.7)
+ppl.plot(x, data["Fast MA"], color = "orange", linewidth = 0.7)
 
 #Crossoversignal
 
