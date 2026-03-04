@@ -3,14 +3,14 @@ import numpy as nu
 import matplotlib.pyplot as ppl
 
 #Data loading
-data = pd.read_csv(r"Modules\Numpy_Pandas_Matplotlib\Indicator Construction\data.csv")
+data = pd.read_csv(r"Modules\Numpy_Pandas_Matplotlib\Indicator Construction\MA Crosses\trending_regimes_data.csv")
 nu_data = data.to_numpy()
 dataframe = pd.DataFrame(data)
 
 #MAs -----------------------------------------------------------------------------------------
 #Slow MA - Pandas Logik
 
-sl_length = 10
+sl_length = 20
 
 data["Slow MA"] = (
     data["Value"]
@@ -21,7 +21,7 @@ data["Slow MA"] = (
 slow_ma = nu.array(data["Slow MA"])
 #Fast MA - Python Logik
 
-fa_length = 3
+fa_length = 5
 
 #Create an empty list
 fast_ma_values = []
@@ -60,15 +60,15 @@ data["Cross Down"] = cross_down
 
 #Upperband = MA + k*STD
 
-data["Upperband"] = data["Fast MA"] + 1 * (data["Value"].rolling(window=sl_length).std())
-data["Upperband 2"] = data["Fast MA"] + 2 * (data["Value"].rolling(window=sl_length).std())
-data["Upperband 3"] = data["Fast MA"] + 2.5 * (data["Value"].rolling(window=sl_length).std())
+data["Upperband"] = data["Slow MA"] + 1 * (data["Value"].rolling(window=sl_length).std())
+data["Upperband 2"] = data["Slow MA"] + 2 * (data["Value"].rolling(window=sl_length).std())
+data["Upperband 3"] = data["Slow MA"] + 2.5 * (data["Value"].rolling(window=sl_length).std())
 
 #Lowerband = MA - k*STD
 
-data["Lowerband"] = data["Fast MA"] - 1 * (data["Value"].rolling(window=sl_length).std())
-data["Lowerband 2"] = data["Fast MA"] - 2 * (data["Value"].rolling(window=sl_length).std())
-data["Lowerband 3"] = data["Fast MA"] - 2.5 * (data["Value"].rolling(window=sl_length).std())
+data["Lowerband"] = data["Slow MA"] - 1 * (data["Value"].rolling(window=sl_length).std())
+data["Lowerband 2"] = data["Slow MA"] - 2 * (data["Value"].rolling(window=sl_length).std())
+data["Lowerband 3"] = data["Slow MA"] - 2.5 * (data["Value"].rolling(window=sl_length).std())
 
 # #Upperband = MA + k*STD
 
