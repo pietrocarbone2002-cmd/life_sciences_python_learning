@@ -39,4 +39,4 @@ pdf.cell(80, 100, "Goodbye World", border = True)            #Setting the cell h
 #--------------------------------------------------------------
 
 if __name__ == "__main__":
-    pdf.output("PDF Reports/Test_part1.pdf")
+    pdf.output("PDF Reports/PDF Outputs/Test_part1.pdf")

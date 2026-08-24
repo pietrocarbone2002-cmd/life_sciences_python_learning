@@ -3,7 +3,7 @@ from fpdf import FPDF
 class PDF(FPDF):
     def header(self):
         #Image
-        self.image("PDF Reports/duck.png", 10, 8, 25)
+        self.image("PDF Reports/Images/duck.png", 10, 8, 25)
         #Font
         self.set_font("helvetica", "B", 20)
         #Padding
@@ -57,4 +57,4 @@ for i in range(1,40):
 #--------------------------------------------------------------
 
 if __name__ == "__main__":
-    pdf.output("PDF Reports/Test_part2.pdf")
+    pdf.output("PDF Reports/PDF Outputs/Test_part2.pdf")
