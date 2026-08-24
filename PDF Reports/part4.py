@@ -86,14 +86,6 @@ pdf = PDF("P", "mm", "Letter")
 pdf.set_title(title)
 pdf.set_author("HeavenDude")
 
-#--------------------------------------------------------------
-# ADD LINKS
-#--------------------------------------------------------------
-
-website = "https://github.com/pietrocarbone2002-cmd/life_sciences_python_learning"
-
-chp1_link = pdf.add_link()
-chp2_link = pdf.add_link()
 
 #--------------------------------------------------------------
 # EDIT THE FILE
@@ -113,19 +105,27 @@ pdf.image(
     w = pdf.w + 1
 )
 
+#--------------------------------------------------------------
+# ADD LINKS
+#--------------------------------------------------------------
+
+website = "https://github.com/pietrocarbone2002-cmd/life_sciences_python_learning"
+
+chp1_link = pdf.add_link()
+chp2_link = pdf.add_link()
+
 #Attach list
 pdf.cell(0, 10, "Text Source", ln=True, link = website)
 pdf.cell(0, 10, "Chapter 1", ln=True, link = chp1_link)
 pdf.cell(0, 10, "Chapter 2", ln=True, link = chp2_link)
 
-#Create Chapters
-pdf.print_chapter(1, "Chapter 1.0", "PDF Reports/Txt Files/chp1.txt", chp1_link)
-pdf.print_chapter(2, "Chapter 2.0", "PDF Reports/Txt Files/chp2.txt", chp2_link)
-
-
 #--------------------------------------------------------------
 # CREATE (RUN) THE PFD FILE
 #--------------------------------------------------------------
+
+#Create Chapters
+pdf.print_chapter(1, "Chapter 1.0", "PDF Reports/Txt Files/chp1.txt", chp1_link)
+pdf.print_chapter(2, "Chapter 2.0", "PDF Reports/Txt Files/chp2.txt", chp2_link)
 
 if __name__ == "__main__":
     pdf.output("PDF Reports/PDF Outputs/Test_part4.pdf")
